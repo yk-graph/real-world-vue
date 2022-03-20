@@ -10,6 +10,7 @@ import { reactive } from 'vue'
 import EventCard from '@/components/EventCard.vue'
 
 export default {
+  name: 'EventList',
   components: {
     EventCard
   },

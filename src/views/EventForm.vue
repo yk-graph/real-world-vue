@@ -1,11 +1,7 @@
 <template>
   <div>
     <h1>Create an event</h1>
-    <form>
-      <div>
-        {{ event }}
-      </div>
-
+    <form @submit.prevent="sendForm">
       <BaseSelect
         v-model="event.category"
         label="Select a category"
@@ -51,6 +47,7 @@ import BaseInput from '@/components/BaseInput.vue'
 import BaseSelect from '@/components/BaseSelect.vue'
 import BaseCheckbox from '@/components/BaseCheckbox.vue'
 import BaseRadioGroup from '@/components/BaseRadioGroup.vue'
+import EventService from '@/services/EventService'
 
 export default {
   components: {
@@ -86,6 +83,14 @@ export default {
         { label: 'Yes', value: 1 },
         { label: 'No', value: 0 }
       ]
+    }
+  },
+
+  methods: {
+    sendForm() {
+      EventService.postEvent(this.event)
+        .then(res => console.log(res))
+        .catch(error => alert(error))
     }
   }
 }

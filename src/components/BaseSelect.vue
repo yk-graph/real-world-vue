@@ -1,8 +1,8 @@
 <template>
   <label v-if="label">{{ label }}</label>
   <select
-    :value="modelValue"
     class="field"
+    :value="modelValue"
     v-bind="{
       ...$attrs,
       onChange: $event => {
@@ -11,7 +11,7 @@
     }"
   >
     <option
-      v-for="option in categories"
+      v-for="option in options"
       :value="option"
       :key="option"
       :selected="option === modelValue"
@@ -31,7 +31,7 @@ export default {
       type: [String, Number],
       default: ''
     },
-    categories: {
+    options: {
       type: Array,
       required: true
     }
